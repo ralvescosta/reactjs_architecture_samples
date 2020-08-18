@@ -23,6 +23,9 @@ export class TodoController implements ITodoController{
     const model = new TodoModel(this.todoList.length + 1, title, description);
     this.setTodoList([...this.todoList, model])
 
+    this.titleInputRef.current.value = ""
+    this.descriptionInputRef.current.value = ""
+    
     return true
 
   }

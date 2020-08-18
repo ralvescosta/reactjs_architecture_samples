@@ -4,11 +4,11 @@ import {useRef, useState} from 'react';
 export class TodoController {
   public titleInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
   public descriptionInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
-  public todoList: any[]
-  public setTodoList: any
+  public todoList: TodoModel[]
+  public setTodoList: React.Dispatch<React.SetStateAction<TodoModel[]>>
 
   constructor() {
-    [this.todoList, this.setTodoList] = useState([])
+    [this.todoList, this.setTodoList] = useState<TodoModel[]>([])
   }
   
   public formControl(): boolean {

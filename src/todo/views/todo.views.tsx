@@ -43,11 +43,11 @@ export const TodoView: React.FC<Props> = ({ controller }: Props) => {
   )
 }
 
-const TodoRoot:React.FC = () => {
+const TodoViewWarper:React.FC = () => {
   const todoController = new TodoController();
   return (
     <TodoView controller={todoController}/>
   )
 }
 
-export default TodoRoot;
+export default TodoViewWarper;

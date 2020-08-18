@@ -1,9 +1,9 @@
 import React from 'react';
-import ToDo from './todo/views/todo.views'
+import TodoView from './todo/views/todo.views'
 
 function App() {
   return (
-    <ToDo/>
+    <TodoView/>
   );
 }
 

@@ -1,0 +1,54 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  margin-top: 50px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.form strong {
+  margin: 20px 0;
+}
+
+.form span {
+  margin-top: 20px;
+  align-self: flex-start;
+}
+
+.form input {
+  height: 25px;
+  width: 25vw;
+  margin-top: 10px;
+}
+
+.form button {
+  margin-top: 30px;
+  width: 60px;
+  height: 30px;
+}
+
+.list {
+  width: 50%;
+  margin-top: 60px;
+  border: solid 1px #aaa;
+  border-radius: 6px;
+  padding: 15px;
+}
+
+.listItem {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.listItem:nth-child(2n -1) {
+  background-color: #ccc;
+}

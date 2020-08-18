@@ -2,9 +2,12 @@ import React from 'react';
 import './styles.css'
 import { TodoController } from '../controller/todo.controller';
 
-const ToDo: React.FC = () => {
-  const controller = new TodoController()
+type Props = {
+  controller: TodoController
+}
 
+export const TodoView: React.FC<Props> = ({ controller }: Props) => {
+  
   function submitForm(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
     
@@ -39,4 +42,11 @@ const ToDo: React.FC = () => {
   )
 }
 
-export default ToDo;
+const TodoRoot:React.FC = () => {
+  const todoController = new TodoController();
+  return (
+    <TodoView controller={todoController}/>
+  )
+}
+
+export default TodoRoot;

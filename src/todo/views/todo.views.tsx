@@ -1,9 +1,10 @@
 import React from 'react';
 import './styles.css'
 import { TodoController } from '../controller/todo.controller';
+import { ITodoController } from '../controller/todo.controller.interface';
 
 type Props = {
-  controller: TodoController
+  controller: ITodoController
 }
 
 export const TodoView: React.FC<Props> = ({ controller }: Props) => {

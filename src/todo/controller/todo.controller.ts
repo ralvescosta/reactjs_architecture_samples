@@ -1,7 +1,8 @@
 import { TodoModel } from "../models/todo.model";
 import {useRef, useState} from 'react';
+import { ITodoController } from "./todo.controller.interface";
 
-export class TodoController {
+export class TodoController implements ITodoController{
   public titleInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
   public descriptionInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
   public todoList: TodoModel[]

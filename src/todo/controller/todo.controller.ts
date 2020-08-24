@@ -1,5 +1,5 @@
 import { TodoModel } from "../models/todo.model";
-import {useRef, useState} from 'react';
+import {useRef, useState, useEffect} from 'react';
 import { ITodoController } from "./todo.controller.interface";
 
 export class TodoController implements ITodoController{
@@ -10,6 +10,7 @@ export class TodoController implements ITodoController{
 
   constructor() {
     [this.todoList, this.setTodoList] = useState<TodoModel[]>([])
+    useEffect(()=> {}, []);
   }
   
   public formControl(): boolean {
@@ -27,6 +28,5 @@ export class TodoController implements ITodoController{
     this.descriptionInputRef.current.value = ""
     
     return true
-
   }
 }

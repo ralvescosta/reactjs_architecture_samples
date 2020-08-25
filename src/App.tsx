@@ -1,5 +1,5 @@
 import React from 'react'
-import TodoView from './todo/views/todo.views'
+import TodoView from './mvvm/todo/views/todo.views'
 
 const App: React.FC = () => {
   return (

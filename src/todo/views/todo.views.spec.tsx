@@ -1,48 +1,23 @@
-import React, { useState, useRef } from 'react'
-import { render, RenderResult, cleanup } from '@testing-library/react'
+import React from 'react'
+import { render, RenderResult, cleanup, fireEvent } from '@testing-library/react'
 import { TodoView } from './todo.views'
-import { ITodoController } from '../controller/todo.controller.interface'
-import { TodoModel } from '../models/todo.model'
+import { TodoControllerSpy } from '../__test__/todo.controller.spy'
 import '@testing-library/jest-dom'
+import { TodoModel } from '../models/todo.model'
 
 type SutType = {
   sut: RenderResult
-  todoControllerSpy: ITodoController
+  todoControllerSpy: TodoControllerSpy
 }
 
-class TodoControllerSpy implements ITodoController {
-  public titleInputRef = useRef<HTMLInputElement>(null)
-  public descriptionInputRef = useRef<HTMLInputElement>(null)
-  public todoList: TodoModel[]
-  public setTodoList: React.Dispatch<React.SetStateAction<TodoModel[]>>
-
-  constructor () {
-    [this.todoList, this.setTodoList] = useState<TodoModel[]>([])
-  }
-
-  public formControl (): boolean {
-    // const title = this.titleInputRef.current.value
-    // const description = this.descriptionInputRef.current.value
-
-    // if (!title || !description) {
-    //   return false
-    // }
-
-    // const model = new TodoModel(this.todoList.length + 1, title, description)
-    // this.setTodoList([...this.todoList, model])
-
-    // this.titleInputRef.current.value = ''
-    // this.descriptionInputRef.current.value = ''
-
-    return true
-  }
-}
-
-function makeSut (): SutType {
-  let todoControllerSpy: ITodoController
+function makeSut (model?: TodoModel): SutType {
+  let todoControllerSpy: TodoControllerSpy
 
   const Warper: React.FC = () => {
-    const todoControllerSpy = new TodoControllerSpy()
+    todoControllerSpy = new TodoControllerSpy()
+    if (model) {
+      todoControllerSpy.todoList = [model]
+    }
     return <TodoView controller={todoControllerSpy} />
   }
 
@@ -64,5 +39,31 @@ describe('Todo View', () => {
   it('Should render TodoView Component', () => {
     const { sut } = makeSut()
     expect(sut.getByText('ToDo')).toBeInTheDocument()
+  })
+
+  it('submitForm()', () => {
+    const { sut, todoControllerSpy } = makeSut()
+
+    const addForm = sut.getByTestId('add-form')
+    fireEvent.submit(addForm)
+
+    expect(todoControllerSpy.result).toBeTruthy()
+  })
+
+  it('Should return alert on submitForm method return false', () => {
+    const { sut, todoControllerSpy } = makeSut()
+    todoControllerSpy.result = false
+    window.alert = jest.fn()
+
+    const addForm = sut.getByTestId('add-form')
+    fireEvent.submit(addForm)
+
+    expect(window.alert).toHaveBeenCalledTimes(1)
+  })
+
+  it('Should return ul if todoList has some Todo', () => {
+    const { sut } = makeSut(new TodoModel(1, 'some_todo', 'some_des'))
+
+    expect(sut.getByText('some_todo')).toBeInTheDocument()
   })
 })

@@ -2,8 +2,8 @@ import React from 'react'
 import { render, RenderResult, cleanup, fireEvent } from '@testing-library/react'
 import { TodoView } from './todo.views'
 import { TodoControllerSpy } from '../__test__/todo.controller.spy'
-import '@testing-library/jest-dom'
 import { TodoModel } from '../models/todo.model'
+import '@testing-library/jest-dom'
 
 type SutType = {
   sut: RenderResult

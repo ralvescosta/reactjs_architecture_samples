@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, RenderResult, cleanup, fireEvent } from '@testing-library/react'
-import { TodoView } from './todo.views'
+import TodoViewWarper, { TodoView } from './todo.views'
 import { TodoControllerSpy } from '../__test__/todo.controller.spy'
 import { TodoModel } from '../models/todo.model'
 import '@testing-library/jest-dom'
@@ -65,5 +65,9 @@ describe('Todo View', () => {
     const { sut } = makeSut(new TodoModel(1, 'some_todo', 'some_des'))
 
     expect(sut.getByText('some_todo')).toBeInTheDocument()
+  })
+
+  it('Should render TodoViewWarper', () => {
+    expect(render(<TodoViewWarper />).getByText('ToDo')).toBeInTheDocument()
   })
 })

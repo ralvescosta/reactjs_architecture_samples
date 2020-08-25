@@ -1,32 +1,32 @@
-import { TodoModel } from "../models/todo.model";
-import {useRef, useState, useEffect} from 'react';
-import { ITodoController } from "./todo.controller.interface";
+import { TodoModel } from '../models/todo.model'
+import { useRef, useState, useEffect } from 'react'
+import { ITodoController } from './todo.controller.interface'
 
-export class TodoController implements ITodoController{
-  public titleInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
-  public descriptionInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
+export class TodoController implements ITodoController {
+  public titleInputRef = useRef<HTMLInputElement>(null)
+  public descriptionInputRef = useRef<HTMLInputElement>(null)
   public todoList: TodoModel[]
   public setTodoList: React.Dispatch<React.SetStateAction<TodoModel[]>>
 
-  constructor() {
+  constructor () {
     [this.todoList, this.setTodoList] = useState<TodoModel[]>([])
-    useEffect(()=> {}, []);
+    useEffect(() => {}, [])
   }
-  
-  public formControl(): boolean {
-    const title = this.titleInputRef.current.value 
+
+  public formControl (): boolean {
+    const title = this.titleInputRef.current.value
     const description = this.descriptionInputRef.current.value
-    
-    if(!title || !description) {
+
+    if (!title || !description) {
       return false
     }
 
-    const model = new TodoModel(this.todoList.length + 1, title, description);
+    const model = new TodoModel(this.todoList.length + 1, title, description)
     this.setTodoList([...this.todoList, model])
 
-    this.titleInputRef.current.value = ""
-    this.descriptionInputRef.current.value = ""
-    
+    this.titleInputRef.current.value = ''
+    this.descriptionInputRef.current.value = ''
+
     return true
   }
 }

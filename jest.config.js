@@ -9,11 +9,13 @@ module.exports = {
   coverageDirectory: 'coverage',
   testEnvironment: 'jsdom',
   transform: {
-    '.+\\.(ts|tsx)$': 'ts-jest'
+    '.+\\.(ts|tsx|js)$': 'ts-jest'
   },
   // alteracao dos paths
   moduleNameMapper: {
     '~/(.*)': '<rootDir>/src/$1',
-    '\\.scss$': 'identity-obj-proxy' // library identity-obj-proxy
-  }
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy' // library identity-obj-proxy
+  },
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  setupFiles: ['<rootDir>/jest.setup.ts']
 }

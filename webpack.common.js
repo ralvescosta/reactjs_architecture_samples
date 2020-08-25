@@ -8,7 +8,7 @@ module.exports = {
     // main bundle
     filename: '[name].bundle.js',
     // vendor bundle
-    chunkFilename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', 'scss', '.svg'],
@@ -24,14 +24,16 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        exclude: /node_modules/,
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader']
       },
       {
+        exclude: /node_modules/,
         test: /\.html$/,
         use: [
           {
-            loader: "html-loader"
+            loader: 'html-loader'
           }
         ]
       },
@@ -43,10 +45,10 @@ module.exports = {
           options: {
             outputPath: 'media',
             publicPath: 'media',
-            name: "[name].[ext]",
+            name: '[name].[ext]'
           }
-        },
-      },
+        }
+      }
     ]
-  },
+  }
 }

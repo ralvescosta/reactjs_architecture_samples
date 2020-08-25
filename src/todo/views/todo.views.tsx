@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import { TodoController } from '../controller/todo.controller'
 import { ITodoController } from '../controller/todo.controller.interface'
+import { TodoModel } from '../models/todo.model'
 
 type Props = {
   controller: ITodoController
@@ -18,7 +19,7 @@ export const TodoView: React.FC<Props> = ({ controller }: Props) => {
 
   return (
     <div className="container">
-      <form className="form" onSubmit={submitForm}>
+      <form data-testid="add-form" className="form" onSubmit={submitForm}>
         <strong>ToDo</strong>
         <span>Title</span>
         <input ref={controller.titleInputRef}/>
@@ -28,7 +29,7 @@ export const TodoView: React.FC<Props> = ({ controller }: Props) => {
       </form>
       <ul className="list">
         {
-          controller.todoList.map((item: any) => {
+          controller.todoList.map((item: TodoModel) => {
             return (
               <li key={item.id} className="listItem">
                 <strong>{item.title}</strong>

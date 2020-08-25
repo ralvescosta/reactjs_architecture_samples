@@ -14,6 +14,6 @@
     "allowJs": true,
     "resolveJsonModule": true
   },
-  "include": ["src"],
-  "exclude": ["src/**/*.spec.ts"]
+  "include": ["src", "jest.setup.ts"],
+  "exclude": ["src/**/*.spec.ts", "node_modules"]
 }

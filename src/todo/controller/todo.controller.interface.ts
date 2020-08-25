@@ -1,4 +1,4 @@
-import { TodoModel } from "../models/todo.model";
+import { TodoModel } from '../models/todo.model'
 
 export interface ITodoController {
   titleInputRef: React.MutableRefObject<HTMLInputElement>

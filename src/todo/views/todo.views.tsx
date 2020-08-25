@@ -1,18 +1,17 @@
-import React from 'react';
+import React from 'react'
 import './styles.css'
-import { TodoController } from '../controller/todo.controller';
-import { ITodoController } from '../controller/todo.controller.interface';
+import { TodoController } from '../controller/todo.controller'
+import { ITodoController } from '../controller/todo.controller.interface'
 
 type Props = {
   controller: ITodoController
 }
 
 export const TodoView: React.FC<Props> = ({ controller }: Props) => {
-  
-  function submitForm(e: React.FormEvent<HTMLFormElement>): void {
+  function submitForm (e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault()
-    
-    if(!controller.formControl()) {
+
+    if (!controller.formControl()) {
       return alert('Batata')
     }
   }
@@ -29,7 +28,7 @@ export const TodoView: React.FC<Props> = ({ controller }: Props) => {
       </form>
       <ul className="list">
         {
-          controller.todoList.map((item: any)=> {
+          controller.todoList.map((item: any) => {
             return (
               <li key={item.id} className="listItem">
                 <strong>{item.title}</strong>
@@ -43,11 +42,11 @@ export const TodoView: React.FC<Props> = ({ controller }: Props) => {
   )
 }
 
-const TodoViewWarper:React.FC = () => {
-  const todoController = new TodoController();
+const TodoViewWarper: React.FC = () => {
+  const todoController = new TodoController()
   return (
     <TodoView controller={todoController}/>
   )
 }
 
-export default TodoViewWarper;
+export default TodoViewWarper

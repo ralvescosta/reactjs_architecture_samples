@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 import TodoView from './todo/views/todo.views'
 
-function App() {
+const App: React.FC = () => {
   return (
     <TodoView/>
-  );
+  )
 }
 
-export default App;
+export default App
